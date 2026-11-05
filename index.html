@@ -1,256 +1,352 @@
-<!DOCTYPE html>
-<html lang="en">
-
-  <head>
-    <meta charset="UTF-8">
-    <title>Untitled</title>
-    
-
-  </head>
-    
-  <body>
-  <!DOCTYPE html>
-<html lang="en">
-
-  <head>
-    <meta charset="UTF-8">
-    <title>Untitled</title>
-    
-
-  </head>
-    
-  <body>
-  <!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diya Malik</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
 
-<title>King Of Nifty</title>
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init', '4552340848367204');fbq('track', 'PageView');</script>
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=4552340848367204&ev=PageView&noscript=1" alt="" /></noscript>
+    <!-- End Meta Pixel Code -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1587807469623465');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1587807469623465&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
 <style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    position: relative;
+    background:
+      radial-gradient(ellipse 65% 50% at 50% 45%, rgba(245, 158, 11, 0.16), transparent 70%),
+      radial-gradient(ellipse 50% 40% at 15% 90%, rgba(99, 102, 241, 0.16), transparent 70%),
+      #0B0A1F;
+    font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 48px;
+    padding: 48px 20px;
+    text-align: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family: 'Poppins', sans-serif;
-}
+  /* ---------- rising data points ---------- */
+  .dust { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
+  .dust span {
+    position: absolute; bottom: -10px; border-radius: 1px;
+    background: #FBBF24;
+    box-shadow: 0 0 6px rgba(251, 191, 36, 0.8);
+    opacity: 0;
+    animation: rise linear infinite;
+  }
+  @keyframes rise {
+    0%   { transform: translateY(0); opacity: 0; }
+    15%  { opacity: 0.5; }
+    85%  { opacity: 0.5; }
+    100% { transform: translateY(-105vh); opacity: 0; }
+  }
 
-body{
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-background:linear-gradient(135deg,#1a0000,#3b0000,#5e0000,#8b0000);
-background-size:400% 400%;
-animation:gradientMove 12s infinite alternate;
-overflow:hidden;
-}
+  /* ---------- connecting line (SVG overlay) ---------- */
+  #wire { position: absolute; top: 0; left: 0; pointer-events: none; z-index: 0; overflow: visible; }
+  #wire .track { fill: none; stroke: rgba(251, 191, 36, 0.14); stroke-width: 2; stroke-dasharray: 4 8; }
+  #wire .live {
+    fill: none; stroke: #FBBF24; stroke-width: 3; stroke-linecap: round;
+    filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.9));
+  }
+  #wire .dot {
+    fill: #FFFBEB;
+    filter: drop-shadow(0 0 8px #FBBF24) drop-shadow(0 0 3px #FFFFFF);
+    transition: opacity .2s ease;
+  }
+  #wire.done .live { animation: flash .5s ease-out; }
+  #wire.done .dot { opacity: 0; }
+  @keyframes flash {
+    0%   { stroke: #FFFBEB; stroke-width: 5; }
+    100% { stroke: #FBBF24; stroke-width: 3; }
+  }
 
-@keyframes gradientMove{
-0%{background-position:0% 50%;}
-100%{background-position:100% 50%;}
-}
+  /* ---------- content ---------- */
+  .head, .join { position: relative; z-index: 1; }
+  .head { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+  .title-row { display: flex; align-items: center; justify-content: center; gap: 18px; }
+  .logo {
+    flex: 0 0 auto;
+    width: clamp(56px, 11vw, 88px);
+    height: clamp(56px, 11vw, 88px);
+    border-radius: 50%;
+    overflow: hidden;
+    background: #1E1B3A;
+    color: #FBBF24;
+    font-size: clamp(18px, 3.6vw, 28px);
+    font-weight: 900;
+    display: flex; align-items: center; justify-content: center;
+    border: 2px solid #FBBF24;
+    box-shadow: 0 0 0 4px rgba(251, 191, 36, 0.15), 0 0 24px rgba(251, 191, 36, 0.3);
+  }
+  .logo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .names { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; text-align: left; }
+  h1 {
+    margin: 0;
+    font-size: clamp(32px, 8vw, 72px);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 700;
+    letter-spacing: 0;
+    padding-right: 0.1em;
+    background: linear-gradient(100deg, #FFFFFF 0%, #FEF3C7 50%, #FBBF24 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .alias {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: clamp(13px, 2.4vw, 20px);
+    font-weight: 700;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: #FBBF24;
+  }
+  .alias svg { flex: 0 0 auto; }
+  .subs {
+    font-size: 14px; font-weight: 600; color: #B3AECF;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
 
-/* floating glow circles */
+  /* ---------- buttons ---------- */
+  .join {
+    display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+    min-height: 64px; padding: 0 44px; border-radius: 999px;
+    background: linear-gradient(180deg, #FDE68A 0%, #F59E0B 100%);
+    color: #2A1A05;
+    font-size: 20px; font-weight: 800; text-decoration: none;
+    border: 1px solid rgba(254, 243, 199, 0.55);
+    box-shadow: 0 10px 30px rgba(245, 158, 11, 0.32);
+    overflow: hidden;
+    transition: transform .15s ease, filter .15s ease;
+  }
+  .join:hover { filter: brightness(1.06); transform: translateY(-1px); }
+  .join > * { position: relative; z-index: 1; }
+  .join::before {
+    content: ''; position: absolute; top: 0; left: -60%;
+    width: 40%; height: 100%;
+    background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+    transform: skewX(-20deg);
+    animation: sweep 3.2s ease-in-out infinite;
+    pointer-events: none;
+  }
+  @keyframes sweep { 0% { left: -60%; } 60%, 100% { left: 130%; } }
 
-.circle{
-position:absolute;
-border-radius:50%;
-filter:blur(120px);
-opacity:0.6;
-animation:float 10s infinite alternate;
-}
+  .join.send { animation: send .6s ease-out; }
+  @keyframes send {
+    0%   { box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.7), 0 10px 30px rgba(245, 158, 11, 0.32); }
+    100% { box-shadow: 0 0 0 18px rgba(251, 191, 36, 0), 0 10px 30px rgba(245, 158, 11, 0.32); }
+  }
 
-.circle1{
-width:300px;
-height:300px;
-background:#ff0000;
-top:10%;
-left:10%;
-}
+  .join.hit { animation: press .45s cubic-bezier(.3, 1.6, .5, 1); overflow: visible; }
+  @keyframes press {
+    0%   { transform: scale(1); }
+    35%  { transform: scale(0.9); filter: brightness(1.25); }
+    100% { transform: scale(1); }
+  }
+  .join.hit::after {
+    content: ''; position: absolute; inset: 0; border-radius: inherit;
+    border: 3px solid #FBBF24;
+    animation: ring .7s ease-out forwards;
+    pointer-events: none;
+  }
+  @keyframes ring {
+    from { transform: scale(1); opacity: 1; }
+    to   { transform: scale(1.4, 1.8); opacity: 0; }
+  }
 
-.circle2{
-width:250px;
-height:250px;
-background:#ff4d4d;
-bottom:10%;
-right:10%;
-}
-
-@keyframes float{
-0%{transform:translateY(0px);}
-100%{transform:translateY(-60px);}
-}
-
-/* glass card */
-
-.card{
-position:relative;
-width:340px;
-padding:40px 30px;
-border-radius:25px;
-background:rgba(255,255,255,0.08);
-backdrop-filter:blur(20px);
-border:1px solid rgba(255,255,255,0.2);
-text-align:center;
-color:white;
-box-shadow:0 20px 60px rgba(0,0,0,0.6);
-animation:cardFloat 4s ease-in-out infinite;
-}
-
-@keyframes cardFloat{
-0%,100%{transform:translateY(0);}
-50%{transform:translateY(-10px);}
-}
-
-.profile{
-width:110px;
-height:110px;
-border-radius:50%;
-border:4px solid white;
-object-fit:cover;
-margin-bottom:15px;
-}
-
-h2{
-margin-bottom:10px;
-font-size:22px;
-}
-
-.text{
-font-size:14px;
-opacity:0.9;
-line-height:1.6;
-margin-bottom:25px;
-}
-
-/* button */
-
-.btn{
-display:inline-flex;
-align-items:center;
-gap:12px;
-background:linear-gradient(45deg,#00c6ff,#0072ff);
-padding:14px 28px;
-border-radius:50px;
-font-weight:bold;
-color:white;
-text-decoration:none;
-font-size:16px;
-transition:0.4s;
-position:relative;
-overflow:hidden;
-}
-
-.btn:hover{
-transform:scale(1.1);
-box-shadow:0 0 25px #00c6ff;
-}
-
-.btn i{
-font-size:18px;
-}
-
-/* disclaimer */
-
-.disclaimer{
-margin-top:20px;
-font-size:11px;
-opacity:0.6;
-text-align:center;
-color:white;
-}
-
-.ads{
-text-align:center;
-margin-top:5px;
-font-size:12px;
-color:white;
-}
-
-.ads a{
-color:#00c6ff;
-font-weight:bold;
-text-decoration:none;
-}
-
+  @media (prefers-reduced-motion: reduce) {
+    .dust, .join::before { display: none; }
+  }
 </style>
 </head>
-
 <body>
 
-<div class="circle circle1"></div>
-<div class="circle circle2"></div>
+  <div class="dust" aria-hidden="true">
+    <span style="width:3px;height:3px;left:8%;animation-duration:14s;animation-delay:0s"></span>
+    <span style="width:2px;height:2px;left:22%;animation-duration:18s;animation-delay:3s"></span>
+    <span style="width:4px;height:4px;left:36%;animation-duration:12s;animation-delay:6s"></span>
+    <span style="width:2px;height:2px;left:51%;animation-duration:16s;animation-delay:1s"></span>
+    <span style="width:3px;height:3px;left:64%;animation-duration:20s;animation-delay:4s"></span>
+    <span style="width:2px;height:2px;left:78%;animation-duration:13s;animation-delay:7s"></span>
+    <span style="width:4px;height:4px;left:90%;animation-duration:17s;animation-delay:2s"></span>
+    <span style="width:2px;height:2px;left:45%;animation-duration:15s;animation-delay:9s"></span>
+  </div>
 
-<div>
+  <svg id="wire" aria-hidden="true">
+    <path class="track" id="trackL"></path>
+    <path class="track" id="trackR"></path>
+    <path class="live" id="liveL"></path>
+    <path class="live" id="liveR"></path>
+    <circle class="dot" id="dotL" r="5"></circle>
+    <circle class="dot" id="dotR" r="5"></circle>
+  </svg>
 
-<div class="card">
+  <!-- CTA 1 (top) -->
+  <a href="https://t.me/+DloVaaGvt3cxNDM1?start" class="join join-top" id="cta-btn" data-tgtrack-cta="1">
+    <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 4.5L2.5 11.5l6 2.2 2.3 6.3 3.4-4.1 4.8 3.6z"/><path d="M8.5 13.7l10-7.2"/></svg>
+    <span>Join Channel</span>
+  </a>
 
-<!-- JPG PHOTO -->
-<img src="https://peppy-arithmetic-310245.netlify.app/radika.jpg" class="profile">
+  <div class="head" id="head">
+    <div class="title-row">
+      <!-- LOGO: apna logo lagane ke liye "DM" hata ke ye daalo: <img src="https://i.ibb.co/GyNsTRM/logo.png" alt="Diya Malik"> -->
+      <div class="logo">AM</div>
+      <h1>Amruta</h1>
+    </div>
 
-<h2>👑 𝗥𝗮𝗱𝗵𝗶𝗸𝗮 𝗧𝗿𝗮𝗱𝗲𝗿 👑</h2>
+    <div class="subs">
+      <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      <!-- SUBS COUNT: yahan apna asli number daalo -->
+      24.7K Subscribers
+    </div>
+  </div>
 
-<div class="text">
-📊 Daily Market Analysis & Learning<br>
-🎯 14+ Years Trading Experience<br>
-🔥 Beginner To Advanced Guidance
-</div>
+  <!-- CTA 2 (bottom, auto open at 3s) -->
+  <a href="https://t.me/+DloVaaGvt3cxNDM1?start" class="join join-bottom" id="cta-btn" data-tgtrack-cta="1">
+    <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 4.5L2.5 11.5l6 2.2 2.3 6.3 3.4-4.1 4.8 3.6z"/><path d="M8.5 13.7l10-7.2"/></svg>
+    <span>Join Channel</span>
+  </a>
 
-<a class="btn" href="https://t.me/+skvZjWJ04NkwZDk1" target="_blank">
-<i class="fab fa-telegram"></i>
-Join Now Free
-<i class="fab fa-telegram"></i>
-</a>
-
-</div>
-
-<div class="disclaimer">
-This channel is for educational and informational purposes only.
-</div>
-
-<div class="ads">
-Ads Managed By <a href="https://t.me/+EXH65DPSlHk2MTk1" target="_blank">भाई की (Ads Agency)</a>
-</div>
-
-</div>
-
+<!-- Design only: line animation only (koi auto-open nahi, koi tracking event nahi) -->
 <script>
+  (function () {
+    var DURATION = 3000;
 
-setTimeout(function(){
-window.location.href="https://t.me/+skvZjWJ04NkwZDk1";
-},30000);
+    var btnTop = document.querySelector('.join-top');
+    var btnBottom = document.querySelector('.join-bottom');
+    var head = document.getElementById('head');
 
+    var wire = document.getElementById('wire');
+    var trackL = document.getElementById('trackL'), trackR = document.getElementById('trackR');
+    var liveL = document.getElementById('liveL'),   liveR = document.getElementById('liveR');
+    var dotL = document.getElementById('dotL'),     dotR = document.getElementById('dotR');
+
+    var start = null, rafId = null, finished = false, cancelled = false;
+
+    function build() {
+      var sx = window.scrollX, sy = window.scrollY;
+      var a = btnTop.getBoundingClientRect();
+      var b = btnBottom.getBoundingClientRect();
+      var h = head.getBoundingClientRect();
+      var docW = document.documentElement.clientWidth;
+      var docH = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
+
+      wire.setAttribute('width', docW);
+      wire.setAttribute('height', docH);
+
+      var gap = 32;
+      var xl = Math.max(10, Math.min(a.left, b.left, h.left) - gap) + sx;
+      var xr = Math.min(docW - 10, Math.max(a.right, b.right, h.right) + gap) + sx;
+      var y0 = a.top + a.height / 2 + sy;
+      var y1 = b.top + b.height / 2 + sy;
+
+      var aL = a.left + sx, bL = b.left + sx, aR = a.right + sx, bR = b.right + sx;
+      var r = Math.max(0, Math.min(24, (y1 - y0) / 2, aL - xl, bL - xl, xr - aR, xr - bR));
+
+      var dL = 'M' + aL + ',' + y0 +
+               ' H' + (xl + r) + ' Q' + xl + ',' + y0 + ' ' + xl + ',' + (y0 + r) +
+               ' V' + (y1 - r) + ' Q' + xl + ',' + y1 + ' ' + (xl + r) + ',' + y1 +
+               ' H' + bL;
+      var dR = 'M' + aR + ',' + y0 +
+               ' H' + (xr - r) + ' Q' + xr + ',' + y0 + ' ' + xr + ',' + (y0 + r) +
+               ' V' + (y1 - r) + ' Q' + xr + ',' + y1 + ' ' + (xr - r) + ',' + y1 +
+               ' H' + bR;
+
+      trackL.setAttribute('d', dL); liveL.setAttribute('d', dL);
+      trackR.setAttribute('d', dR); liveR.setAttribute('d', dR);
+    }
+
+    function setProgress(p) {
+      [[liveL, dotL], [liveR, dotR]].forEach(function (pair) {
+        var path = pair[0], dot = pair[1];
+        var len = path.getTotalLength();
+        path.style.strokeDasharray = len;
+        path.style.strokeDashoffset = len * (1 - p);
+        var pt = path.getPointAtLength(len * p);
+        dot.setAttribute('cx', pt.x);
+        dot.setAttribute('cy', pt.y);
+      });
+    }
+
+    function ease(t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+
+    function hit() {
+      finished = true;
+      setProgress(1);
+      wire.classList.add('done');
+      btnBottom.classList.remove('hit');
+      void btnBottom.offsetWidth;
+      btnBottom.classList.add('hit');
+      // auto-open band hai: sirf animation, Telegram user ke click pe hi khulega
+    }
+
+    function frame(ts) {
+      if (cancelled) return;
+      if (start === null) start = ts;
+      var t = Math.min((ts - start) / DURATION, 1);
+      setProgress(ease(t));
+      if (t < 1) rafId = requestAnimationFrame(frame);
+      else hit();
+    }
+
+    function stop() {
+      cancelled = true;
+      if (rafId) cancelAnimationFrame(rafId);
+    }
+
+    btnTop.addEventListener('click', stop);
+    btnBottom.addEventListener('click', stop);
+
+    window.addEventListener('resize', function () {
+      build();
+      if (finished) setProgress(1);
+    });
+
+    function go() {
+      build();
+      setProgress(0);
+      btnTop.classList.add('send');
+      rafId = requestAnimationFrame(frame);
+    }
+
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(go);
+    } else {
+      window.addEventListener('load', go);
+    }
+  })();
 </script>
 
+    <script>
+    (function () {
+      document.addEventListener("click", function (e) {
+        var a = e.target && e.target.closest && e.target.closest("#cta-btn");
+        if (!a) return;
+        if (typeof gtag_report_conversion !== "function") return;
+        var raw = (a.getAttribute("href") || "").trim();
+        var dest = (raw && raw !== "#" && raw.indexOf("http") === 0) ? raw : void 0;
+        e.preventDefault();
+        try {
+          gtag_report_conversion(dest);
+        } catch (err1) {}
+      }, true);
+    })();
+    </script>
+
+    <script src="https://tgtrack.io/api/events/tracker.js?key=3ff7599a0316c1f424a1c13cce793ff6"></script>
+    <script>document.getElementById('cta-btn').setAttribute('data-tgtrack-cta','1');</script>
 </body>
-</html>
-    
-  </body>
-  
-</html>
-    
-  </body>
-  
 </html>
